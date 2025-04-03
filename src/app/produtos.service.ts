@@ -14,6 +14,10 @@ export interface Produto {
   quantidade_estoque: number;
   data_criacao: string;
   imagem_path: string;
+  // Campos extras para a exibição no DataView
+  inventoryStatus?: string;
+  rating?: number;
+  category?: string;
 }
 
 @Injectable({
