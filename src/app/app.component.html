@@ -2,32 +2,16 @@
   <div class="min-h-screen surface-ground text-800 p-4">
     <div class="flex justify-between items-center mb-4">
       <h1 class="text-3xl font-bold">🛍️ PrazoCerto</h1>
-      <!-- Botão PrimeNG -->
-      <button
-        pButton
-        icon="pi pi-moon"
-        class="p-button-outlined"
-        (click)="alternarTema()"
+      <p-button
         label="Tema"
-      ></button>
+        icon="pi pi-moon"
+        (onClick)="alternarTema()"
+      ></p-button>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <div class="surface-card p-4 border-round shadow-1" *ngFor="let i of [].constructor(8)">
-        <div class="text-xl font-semibold mb-2">Produto {{ i + 1 }}</div>
-        <p class="text-sm text-gray-500 mb-3">
-          Descrição do produto em destaque.
-        </p>
-        <button
-          pButton
-          icon="pi pi-shopping-cart"
-          label="Comprar"
-          class="w-full"
-        ></button>
-      </div>
-    </div>
+    <!-- Exibe os produtos reais do backend -->
+    <app-produtos></app-produtos>
   </div>
 </main>
 
-<!-- Roteador, se houver rotas configuradas -->
 <router-outlet></router-outlet>
