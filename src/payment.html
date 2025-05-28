@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Prazo Certo</title>
+    <link rel="stylesheet" href="style.css"> <!-- Reutilizar o estilo principal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilos adicionais específicos para a página de pagamento */
+        .payment-container {
+            max-width: 800px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: #fff;
+            border: var(--border);
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+        }
+        .payment-container h1 {
+            text-align: center;
+            color: var(--black);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .payment-container h1 span {
+            color: var(--main-color);
+        }
+        .cart-summary, .payment-form, .cancellation-policy {
+            margin-bottom: 2rem;
+        }
+        .cart-summary h2, .payment-form h2, .cancellation-policy h2 {
+            color: var(--black);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: .5rem;
+        }
+        .cart-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .cart-summary li {
+            display: flex;
+            justify-content: space-between;
+            padding: .5rem 0;
+            font-size: 1.4rem;
+            color: var(--light-color);
+        }
+        .cart-summary .total {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: var(--black);
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+        .payment-form .inputBox {
+            margin-bottom: 1.5rem;
+        }
+        .payment-form .inputBox span {
+            display: block;
+            margin-bottom: .5rem;
+            color: var(--black);
+            font-size: 1.4rem;
+        }
+        .payment-form .inputBox input {
+            width: 100%;
+            padding: 1rem;
+            border: var(--border);
+            border-radius: .5rem;
+            font-size: 1.4rem;
+        }
+        .cancellation-policy p {
+            font-size: 1.4rem;
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+        .btn-pay {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: .9rem 3rem;
+            font-size: 1.7rem;
+            color: #fff;
+            background: var(--main-color);
+            cursor: pointer;
+            border: none;
+            border-radius: .5rem;
+        }
+        .btn-pay:hover {
+            letter-spacing: .2rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header (opcional, pode ser simplificado ou removido para foco no pagamento) -->
+<header class="header">
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="">
+    </a>
+    <nav class="navbar">
+        <a href="index.html#home">home</a>
+        <a href="index.html#about">Sobre Nós</a>
+        <a href="index.html#menu">Ofertas</a>
+        <a href="index.html#products">Produtos</a>
+    </nav>
+    <div class="icons">
+        <!-- Ícones podem ser removidos ou simplificados -->
+    </div>
+</header>
+
+<section class="payment-container">
+    <h1>Finalizar <span>Pagamento</span></h1>
+
+    <div class="cart-summary">
+        <h2>Resumo do Pedido</h2>
+        <ul id="summary-items">
+            <!-- Itens do carrinho serão inseridos aqui via JS -->
+        </ul>
+        <div id="summary-total" class="total">
+            <!-- Total será inserido aqui via JS -->
+        </div>
+    </div>
+
+    <div class="payment-form">
+        <h2>Informações de Pagamento</h2>
+        <form id="payment-details-form">
+            <div class="inputBox">
+                <span>Nome no Cartão</span>
+                <input type="text" placeholder="Nome como aparece no cartão" required>
+            </div>
+            <div class="inputBox">
+                <span>Número do Cartão</span>
+                <input type="text" placeholder="xxxx xxxx xxxx xxxx" required>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <div class="inputBox" style="flex: 1;">
+                    <span>Data de Validade</span>
+                    <input type="text" placeholder="MM/AA" required>
+                </div>
+                <div class="inputBox" style="flex: 1;">
+                    <span>CVV</span>
+                    <input type="text" placeholder="xxx" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-pay">Pagar Agora</button>
+        </form>
+    </div>
+
+    <div class="cancellation-policy">
+        <h2>Política de Cancelamento</h2>
+        <p>O cancelamento do pedido é permitido até 2 horas antes do horário agendado para retirada dos produtos. Após este período, o cancelamento não será mais possível.</p>
+    </div>
+
+</section>
+
+<!-- Footer (opcional) -->
+<section class="footer">
+    <!-- Conteúdo do rodapé pode ser adicionado se necessário -->
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+        const summaryItems = document.getElementById('summary-items');
+        const summaryTotal = document.getElementById('summary-total');
+        let total = 0;
+
+        if (cart.length === 0) {
+            summaryItems.innerHTML = '<li>Seu carrinho está vazio.</li>';
+            summaryTotal.textContent = 'Total: R$0.00';
+        } else {
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>R$${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                summaryItems.appendChild(listItem);
+                total += item.price * item.quantity;
+            });
+            summaryTotal.textContent = `Total: R$${total.toFixed(2)}`;
+        }
+
+        // Lógica simples para o botão de pagar (não processa pagamento real)
+        const paymentForm = document.getElementById('payment-details-form');
+        if(paymentForm) {
+            paymentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Pagamento processado com sucesso! (Simulação)');
+                // Limpar carrinho após pagamento simulado
+                localStorage.removeItem('shoppingCart');
+                // Redirecionar para uma página de confirmação ou home
+                window.location.href = 'index.html';
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
+

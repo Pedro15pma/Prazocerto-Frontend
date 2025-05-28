@@ -1,0 +1,172 @@
+/* cart-page.css */
+
+.cart-page-container {
+    padding: 2rem 7%;
+    margin-top: 8rem; /* Account for fixed header */
+    color: #fff; /* Default text color for the page */
+}
+
+.cart-page-container h1 {
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 2.5rem;
+    font-size: 3.5rem;
+    border-bottom: var(--border);
+    margin-bottom: 2rem;
+}
+
+#cart-items-display {
+    margin-bottom: 2rem;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid var(--border);
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.6rem;
+}
+
+.cart-table th {
+    background-color: var(--black);
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.cart-page-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: .5rem;
+}
+
+.quantity-btn, .remove-item-btn {
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    padding: .5rem 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: .3rem;
+    margin: 0 .5rem;
+}
+
+.quantity-btn:hover, .remove-item-btn:hover {
+    background-color: #00a063; /* Darker shade of main color */
+}
+
+.item-quantity {
+    font-size: 1.8rem;
+    margin: 0 .5rem;
+    min-width: 20px; /* Ensure space for number */
+    display: inline-block;
+    text-align: center;
+}
+
+.remove-item-btn.fas.fa-times {
+    background: transparent;
+    color: var(--main-color);
+    font-size: 2rem;
+    padding: 0;
+}
+
+.remove-item-btn.fas.fa-times:hover {
+    color: #ff0000; /* Red for delete hover */
+}
+
+#cart-total-display {
+    text-align: right;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    border-top: var(--border);
+}
+
+#checkout-button {
+    display: block;
+    width: auto;
+    min-width: 200px;
+    margin: 1rem auto;
+    padding: 1.2rem 3rem;
+    font-size: 1.8rem;
+    color: #fff;
+    background: var(--main-color);
+    cursor: pointer;
+    text-align: center;
+    border-radius: .5rem;
+    text-transform: uppercase;
+}
+
+#checkout-button:hover {
+    letter-spacing: .2rem;
+    background-color: #00a063;
+}
+
+#checkout-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 3rem 0;
+    color: #ccc;
+}
+
+.empty-cart-message a {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+.empty-cart-message a:hover {
+    color: #00e08c;
+}
+
+/* Styling for the cart quantity popup */
+.header .icons {
+    position: relative; /* Para posicionar o popup em relação ao container dos ícones */
+}
+
+.cart-quantity-popup {
+    position: absolute;
+    top: -10px; /* Ajustado para melhor visualização */
+    right: 15px; /* Ajustado para alinhar melhor com o ícone do carrinho */
+    background-color: var(--main-color); /* Alterado para a cor principal do tema */
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px; /* Aumentado para melhor legibilidade */
+    font-size: 1.2rem; /* Aumentado para melhor legibilidade */
+    font-weight: bold;
+    line-height: 1;
+    min-width: 20px; /* Para manter a forma circular */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    display: none; /* Escondido por padrão, mostrado via JS */
+    border: 2px solid var(--black); /* Adicionada borda para destaque */
+}
+
+/* Ajuste para o ícone do carrinho quando ele é um link */
+.header .icons a.fa-shopping-cart {
+    color:#fff; /* Cor padrão dos ícones */
+    cursor: pointer;
+    font-size: 2.5rem; /* Tamanho padrão dos ícones */
+    margin-left: 2rem;
+    text-decoration: none;
+}
+.header .icons a.fa-shopping-cart:hover {
+    color:var(--main-color); /* Cor no hover, padrão do tema */
+}
+
+

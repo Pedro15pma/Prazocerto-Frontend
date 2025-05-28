@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Estoque - Prazo Certo</title>
+    <link rel="stylesheet" href="style.css"> <!-- Reutilizar o estilo principal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilos específicos para a página de estoque */
+        .inventory-container {
+            max-width: 1000px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: #fff;
+            border: var(--border);
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+        }
+        .inventory-container h1 {
+            text-align: center;
+            color: var(--black);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .inventory-container h1 span {
+            color: var(--main-color);
+        }
+        .inventory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        .inventory-table th, .inventory-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.4rem;
+        }
+        .inventory-table th {
+            background-color: #f2f2f2;
+            color: var(--black);
+        }
+        .inventory-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .inventory-table td.low-stock {
+            color: red;
+            font-weight: bold;
+        }
+         .inventory-table td.expired, .inventory-table td.near-expiry {
+            font-weight: bold;
+        }
+        .inventory-table td.expired {
+             color: red;
+        }
+         .inventory-table td.near-expiry {
+             color: orange;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="">
+    </a>
+    <nav class="navbar">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#menu">Ofertas</a>
+        <a href="index.html#products">Produtos</a>
+        <a href="inventory.html">Estoque</a> <!-- Link para a própria página -->
+    </nav>
+    <div class="icons">
+        <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+    <!-- Carrinho lateral (pode ser incluído se necessário) -->
+     <div class="cart-items-container">
+        <!-- Itens do carrinho e botão checkout (carregados por cart.js) -->
+    </div>
+</header>
+
+<section class="inventory-container">
+    <h1>Gerenciamento de <span>Estoque</span></h1>
+
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Estoque Atual</th>
+                <th>Data de Validade</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="inventory-body">
+            <!-- Linhas da tabela serão inseridas aqui via JS -->
+        </tbody>
+    </table>
+</section>
+
+<!-- Footer (opcional) -->
+<section class="footer">
+    <!-- Conteúdo do rodapé -->
+</section>
+
+<!-- Incluir script.js para ter acesso a productsData e formatDate -->
+<script src="script.js"></script>
+<!-- Incluir cart.js para funcionalidade do carrinho no header -->
+<script src="cart.js"></script>
+
+<script>
+    // Função para formatar data (já existe em script.js, mas redeclarada para garantir)
+    function formatDateForInventory(dateString) {
+        if (!dateString) return 'N/A';
+        try {
+            const [year, month, day] = dateString.split('-');
+            return `${day}/${month}/${year}`;
+        } catch (e) {
+            console.error("Erro ao formatar data:", dateString, e);
+            return dateString; // Retorna string original em caso de erro
+        }
+    }
+
+    // Função para verificar status da validade
+    function getExpiryStatus(expiryDateString) {
+        if (!expiryDateString) return { text: 'N/A', class: '' };
+        try {
+            const expiryDate = new Date(expiryDateString);
+            const today = new Date();
+            const warningDays = 7; // Avisar 7 dias antes
+            const warningDate = new Date(today);
+            warningDate.setDate(today.getDate() + warningDays);
+
+            // Ajusta para comparar apenas datas (ignora horas)
+            expiryDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+            warningDate.setHours(0, 0, 0, 0);
+
+            if (expiryDate < today) {
+                return { text: 'Vencido', class: 'expired' };
+            } else if (expiryDate <= warningDate) {
+                return { text: 'Próximo Venc.', class: 'near-expiry' };
+            } else {
+                return { text: 'OK', class: '' };
+            }
+        } catch (e) {
+            console.error("Erro ao verificar validade:", expiryDateString, e);
+            return { text: 'Erro', class: 'expired' };
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const inventoryBody = document.getElementById('inventory-body');
+
+        // Verifica se productsData está disponível (de script.js)
+        if (typeof productsData !== 'undefined' && Array.isArray(productsData)) {
+            if (productsData.length === 0) {
+                inventoryBody.innerHTML = '<tr><td colspan="4">Nenhum produto encontrado.</td></tr>';
+                return;
+            }
+
+            productsData.forEach(product => {
+                const row = document.createElement('tr');
+                const stockClass = product.stock <= 5 ? 'low-stock' : ''; // Exemplo: marcar estoque baixo <= 5
+                const expiryInfo = getExpiryStatus(product.expiryDate);
+
+                row.innerHTML = `
+                    <td>${product.name}</td>
+                    <td class="${stockClass}">${product.stock}</td>
+                    <td>${formatDateForInventory(product.expiryDate)}</td>
+                    <td class="${expiryInfo.class}">${expiryInfo.text}</td>
+                `;
+                inventoryBody.appendChild(row);
+            });
+        } else {
+            console.error('Erro: productsData não está definido ou não é um array.');
+            inventoryBody.innerHTML = '<tr><td colspan="4">Erro ao carregar dados do estoque. Verifique se script.js foi carregado corretamente.</td></tr>';
+        }
+
+        // Inicializa funcionalidades do header (menu, busca, carrinho) que vêm de script.js e cart.js
+        // O código em script.js e cart.js já adiciona os listeners necessários no DOMContentLoaded
+    });
+</script>
+
+</body>
+</html>
+

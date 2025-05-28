@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Prazo Certo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart-page.css">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Prazo Certo Logo">
+        </a>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">Sobre Nós</a>
+            <a href="index.html#menu">Ofertas</a>
+            <a href="index.html#products">Produtos</a>
+            <a href="index.html#review">Avaliações</a>
+            <a href="index.html#contact">Contato</a>
+            <a href="index.html#blogs">Parceiros</a>
+        </nav>
+        <div class="icons">
+            <div class="fas fa-search" id="search-btn"></div>
+            <a href="cart.html" class="fas fa-shopping-cart" id="cart-btn"></a>
+            <div class="fas fa-bars" id="menu-btn"></div>
+        </div>
+    </header>
+
+    <main class="cart-page-container">
+        <h1>Seu Carrinho de Compras</h1>
+        <div id="cart-items-display">
+            <!-- Itens do carrinho serão carregados aqui pelo cart.js -->
+        </div>
+        <div id="cart-total-display">
+            <!-- Total do carrinho será exibido aqui -->
+        </div>
+        <div class="cart-actions">
+             <button id="empty-cart-button" class="btn btn-secondary">Esvaziar Carrinho</button>
+             <button id="checkout-button" class="btn btn-primary">Finalizar Compra</button>
+        </div>
+       
+    </main>
+
+    <script src="cart.js?v=1.2"></script> <!-- Updated version number -->
+</body>
+</html>
