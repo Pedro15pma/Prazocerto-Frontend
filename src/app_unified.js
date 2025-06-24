@@ -125,7 +125,7 @@
     }
 ];*/
 window.productsData = []
-fetch('http://localhost:4000/produtos')
+fetch('https://prazocerto-backend.onrender.com/produtos')
     .then(response => response.json())
     .then(data => {
       // Atribuindo os dados recebidos à variável global
