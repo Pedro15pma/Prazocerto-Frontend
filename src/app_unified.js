@@ -1,94 +1,95 @@
 // Dados simulados dos produtos com estoque e validade
-window.productsData = [
+// Dados simulados dos produtos com estoque e validade
+/*window.productsData = [
     // Ofertas do Dia
     {
         id: 'aveia',
         name: 'Aveia em Flocos',
         price: 1.99,
-        originalPrice: 4.99,
+        originalprice: 4.99,
         image: 'https://phygital-files.mercafacil.com/catalogo/uploads/produto/aveia_flocos_finos_nestle_170g_bedb351d-a636-4689-a3b3-94a5e5fd9863.png',
         stock: 15,
-        expiryDate: '2025-08-15',
+        expirydate: '2025-08-15',
         section: 'menu'
     },
     {
         id: 'ovos',
         name: 'Ovos Vermelhos',
         price: 13.99,
-        originalPrice: 22.99,
+        originalprice: 22.99,
         image: 'https://png.pngtree.com/png-clipart/20230131/ourmid/pngtree-red-egg-ingredients-png-image_6197722.png',
         stock: 5,
-        expiryDate: '2025-06-30',
+        expirydate: '2025-06-30',
         section: 'menu'
     },
     {
         id: 'heineken',
         name: 'Heineken Long',
-        price: 20.99,
-        originalPrice: 35.99,
+        price: 20.99,  
+        originalprice: 35.99,
         image: 'https://ibassets.com.br/ib.item.image.big/b-695efec747ec4183b4205ace876fbd7f.png',
         stock: 8,
-        expiryDate: '2025-10-07',
+        expirydate: '2025-10-07',
         section: 'menu'
     },
     {
         id: 'tomates',
         name: 'Tomates',
         price: 0.99,
-        originalPrice: 4.99,
+        originalprice: 4.99,
         image: 'https://static.vecteezy.com/system/resources/thumbnails/041/491/389/small/ai-generated-tomato-and-water-drop-isolated-background-png.png',
         stock: 25,
-        expiryDate: '2025-05-20',
+        expirydate: '2025-05-20',
         section: 'menu'
     },
     {
         id: 'arroz',
         name: 'Arroz Camil',
         price: 13.99,
-        originalPrice: 27.99,
+        originalprice: 27.99,
         image: 'https://www.davo.com.br/ccstore/v1/images/?source=/file/v4884597705441539712/products/prod_7896006762027.imagem1.jpg&height=940&width=940',
         stock: 30,
-        expiryDate: '2025-06-30',
+        expirydate: '2025-06-30',
         section: 'menu'
     },
     {
         id: 'danone',
         name: 'Danone 1lt',
         price: 5.99,
-        originalPrice: 10.99,
+        originalprice: 10.99,
         image: 'https://s3-sa-east-1.amazonaws.com/superimg/img.produtos/7891025320555/img_1200_1.png',
         stock: 12,
-        expiryDate: '2025-07-10',
+        expirydate: '2025-07-10',
         section: 'menu'
     },
     {
         id: 'banana',
         name: 'Banana Prata',
         price: 2.49,
-        originalPrice: 4.99,
+        originalprice: 4.99,
         image: 'https://superprix.vteximg.com.br/arquivos/ids/178630/Banana-Prata.png?v=636861955826400000',
         stock: 40,
-        expiryDate: '2025-05-15',
+        expirydate: '2025-05-15',
         section: 'menu'
     },
     {
         id: 'cafe',
         name: 'Café Melitta',
         price: 10.99,
-        originalPrice: 15.99,
+        originalprice: 15.99,
         image: 'https://docesvaz.vtexassets.com/arquivos/ids/162046-800-auto?v=638297934265430000&width=800&height=auto&aspect=true',
         stock: 22,
-        expiryDate: '2025-06-25',
+        expirydate: '2025-06-25',
         section: 'menu'
     },
     {
         id: 'sabao',
         name: 'Sabão em Pó Omo',
         price: 8.99,
-        originalPrice: 12.99,
+        originalprice: 12.99,
         image: 'https://protelimp.com.br/wp-content/uploads/2017/08/sabao-em-po-omo-800g.png',
         stock: 18,
-        expiryDate: '2025-12-31',
+        expirydate: '2025-12-31',
         section: 'menu'
     },
     // Nossos Produtos
@@ -96,39 +97,50 @@ window.productsData = [
         id: 'oleo',
         name: 'Óleo de Soja',
         price: 3.99,
-        originalPrice: 7.99,
+        originalprice: 7.99,
         image: 'https://superprix.vteximg.com.br/arquivos/ids/176449/Oleo-de-Soja-Soya-900ml.png?v=636470371263970000',
         stock: 50,
-        expiryDate: '2025-09-30',
+        expirydate: '2025-09-30',
         section: 'products'
     },
     {
         id: 'leite',
         name: 'Leite Integral',
         price: 2.99,
-        originalPrice: 4.99,
+        originalprice: 4.99,
         image: 'https://www.itambe.com.br/portal/Images/Produto/integraluht_full.png',
         stock: 35,
-        expiryDate: '2025-06-10',
+        expirydate: '2025-06-10',
         section: 'products'
     },
     {
         id: 'pao',
         name: 'Pão de forma',
         price: 0.99,
-        originalPrice: 3.99,
+        originalprice: 3.99,
         image: 'https://s3-sa-east-1.amazonaws.com/superimg/img.produtos/7896002360326/img_1200_1.png',
         stock: 20,
-        expiryDate: '2025-05-18',
+        expirydate: '2025-05-18',
         section: 'products'
     }
-];
-console.log("app_unified.js: window.productsData definido.");
-
+];*/
+window.productsData = []
+fetch('http://localhost:4000/produtos')
+    .then(response => response.json())
+    .then(data => {
+      // Atribuindo os dados recebidos à variável global
+      window.productsData = data;
+      console.log('Dados carregados:', window.productsData);
+      loadProducts()
+    })
+    .catch(error => {
+      console.error('Erro ao carregar os produtos:', error);
+    });
+console.log("script.js: window.productsData definido:", JSON.stringify(window.productsData));
 function formatDate(dateString) {
-    const [year, month, day] = dateString.split('-');
+    const [year, month, day] = dateString.split('T')[0].split('-');
     return `${day}/${month}/${year}`;
-}
+  }
 
 function loadProducts() {
     console.log("app_unified.js: loadProducts chamada");
@@ -142,15 +154,18 @@ function loadProducts() {
             return;
         }
         window.productsData.forEach(product => {
+            console.dir(product,{depth: null})
+            console.dir(typeof product.expirydate,{depth: null})
+            
             const productBox = document.createElement('div');
             productBox.classList.add('box');
             productBox.setAttribute('data-product-id', product.id);
             let productHTML = `
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
-                <div class="price">R$${product.price.toFixed(2)} <span>R$${product.originalPrice.toFixed(2)}</span></div>
+                <div class="price">R$${Number(product.price).toFixed(2)} <span>R$${Number(product.originalprice).toFixed(2)}</span></div>
                 <div class="stock-info">Estoque: <span class="stock-count">${product.stock}</span></div>
-                <div class="expiry-info">Validade: ${formatDate(product.expiryDate)}</div>
+                <div class="expiry-info">Validade: ${formatDate(product.expirydate)}</div>
             `;
             if (product.section === 'menu') {
                 productHTML += `<a href="#" class="btn add-to-cart-btn" data-product-id="${product.id}">Adicionar no carrinho</a>`;
@@ -173,9 +188,9 @@ function loadProducts() {
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <div class="price">R$${product.price.toFixed(2)} <span>R$${product.originalPrice.toFixed(2)}</span></div>
+                        <div class="price">R$${Number(product.price).toFixed(2)} <span>R$${Number(product.originalprice).toFixed(2)}</span></div>
                         <div class="stock-info">Estoque: <span class="stock-count">${product.stock}</span></div>
-                        <div class="expiry-info">Validade: ${formatDate(product.expiryDate)}</div>
+                        <div class="expiry-info">Validade: ${formatDate(product.expirydate)}</div>
                     </div>
                 `;
             }
@@ -410,18 +425,18 @@ function updateCartDisplay() {
                     row.innerHTML = `
                         <td><img src="${item.image}" alt="${item.name}" class="cart-page-item-image"></td>
                         <td>${item.name}</td>
-                        <td>R$ ${item.price.toFixed(2)}</td>
+                        <td>R$ ${Number(item.price).toFixed(2)}</td>
                         <td>
                             <button class="quantity-btn" onclick="window.decrementItemInCart('${item.id}')">-</button>
                             <span class="item-quantity">${item.quantity}</span>
                             <button class="quantity-btn" onclick="window.incrementItemInCart('${item.id}')">+</button>
                         </td>
-                        <td>R$ ${itemSubtotal.toFixed(2)}</td>
+                        <td>R$ ${Number(itemSubtotal).toFixed(2)}</td>
                         <td><button class="remove-item-btn fas fa-times" onclick="window.removeItemCompletely('${item.id}')"></button></td>
                     `;
                 });
                 currentPageCartItemsDisplay.appendChild(table);
-                currentPageCartTotalDisplay.innerHTML = `<h3>Total do Pedido: R$ ${pageTotal.toFixed(2)}</h3>`;
+                currentPageCartTotalDisplay.innerHTML = `<h3>Total do Pedido: R$ ${Number(pageTotal).toFixed(2)}</h3>`;
             }
             const checkoutButtonOnCartPage = document.getElementById("checkout-button");
             if(checkoutButtonOnCartPage) {

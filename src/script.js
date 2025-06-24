@@ -1,5 +1,5 @@
 // Dados simulados dos produtos com estoque e validade
-window.productsData = [
+/*window.productsData = [
     // Ofertas do Dia
     {
         id: 'aveia',
@@ -24,7 +24,7 @@ window.productsData = [
     {
         id: 'heineken',
         name: 'Heineken Long',
-        price: 20.99,
+        price: 20.99,  
         originalPrice: 35.99,
         image: 'https://ibassets.com.br/ib.item.image.big/b-695efec747ec4183b4205ace876fbd7f.png',
         stock: 8,
@@ -122,7 +122,10 @@ window.productsData = [
         expiryDate: '2025-05-18',
         section: 'products'
     }
-];
+];*/
+window.productsData = [
+    
+]
 console.log("script.js: window.productsData definido:", JSON.stringify(window.productsData));
 
 // Função para formatar data (DD/MM/YYYY)
