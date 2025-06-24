@@ -2,7 +2,7 @@
   "name": "prazo-certo",
   "version": "0.0.0",
   "scripts": {
-    "start": "node src\\boot.js"
+    "start": "node src/boot.js"
   },
   "private": true,
   "dependencies": {

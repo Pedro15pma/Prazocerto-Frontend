@@ -27,7 +27,7 @@
                 <p class="description description-primary">Para se manter conectado conosco</p>
                 <p class="description description-primary">por favor faça login com suas informações pessoais</p>
                 <button id="signin" class="btn btn-primary">entrar</button>
-            </div>    
+            </div>
             <div class="second-column">
                 <h2 class="title title-second">criar uma conta</h2>
                 <p class="description description-second">Use seu e-mail para registro:</p>
@@ -36,19 +36,19 @@
                         <i class="far fa-user icon-modify"></i>
                         <input type="text" placeholder="Nome" id="signup-name" required>
                     </label>
-                    
+
                     <label class="label-input" for="signup-email">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" placeholder="Email" id="signup-email" required>
                     </label>
-                    
+
                     <label class="label-input" for="signup-password">
                         <i class="fas fa-lock icon-modify"></i>
                         <input type="password" placeholder="Senha" id="signup-password" required>
                     </label>
-                    
+
                     <div id="signup-error" class="error-message"></div>
-                    <button type="submit" id="signup-btn" class="btn btn-second">Cadastre-se</button>      
+                    <button type="submit" id="signup-btn" class="btn btn-second">Cadastre-se</button>
                 </form>
             </div><!-- second column -->
         </div><!-- first content -->
@@ -63,17 +63,17 @@
                 <h2 class="title title-second">faça login</h2>
                 <p class="description description-second">Use sua conta de e-mail:</p>
                 <form class="form" id="login-form">
-                
+
                     <label class="label-input" for="login-email">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" placeholder="Email" id="login-email" required>
                     </label>
-                
+
                     <label class="label-input" for="login-password">
                         <i class="fas fa-lock icon-modify"></i>
                         <input type="password" placeholder="Senha" id="login-password" required>
                     </label>
-                
+
                     <a class="password" href="#">esqueceu sua senha?</a>
                     <div id="login-error" class="error-message"></div>
                     <button type="submit" id="login-btn" class="btn btn-second">entrar</button>
@@ -81,13 +81,12 @@
             </div><!-- second column -->
         </div><!-- second-content -->
     </div>
-    <script src="app.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script>
         // Função de login do Google (mantida como estava)
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); 
+            console.log("ID: " + profile.getId());
             console.log('Full Name: ' + profile.getName());
             console.log('Given Name: ' + profile.getGivenName());
             console.log('Family Name: ' + profile.getFamilyName());
